@@ -23,6 +23,10 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      //선언만 하고 사용하지 않는 경우
+      "@typescript-eslint/no-unused-vars": "off",
+      //any타입을 정의할 수 없도록 막음
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
 )
