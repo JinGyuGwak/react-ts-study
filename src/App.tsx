@@ -3,6 +3,7 @@ import { Routes, Route, Outlet } from "react-router";
 import IndexPage from "./pages/sign-in-page";
 import SignInPage from "./pages/index-page";
 import SignUpPage from "./pages/sign-up-page";
+import CounterPage from "./pages/counter-page";
 
 function AuthLayout() {
   return (
@@ -17,6 +18,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<IndexPage />} />
+      <Route path="/counter" element={<CounterPage />} />
 
       {/* 공통 레이아웃을 적용하기 위한 코드 */}
       <Route element={<AuthLayout />}>
