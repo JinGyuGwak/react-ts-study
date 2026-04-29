@@ -1,0 +1,15 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "content": "Todo 1",
+      "isDone": true
+    },
+    {
+      "content": "ㅅㄷㄴㅅ",
+      "isDone": false,
+      "id": "pHT8Ul867D8"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,15 +1,9 @@
 import { create } from "zustand";
-import {
-  combine,
-  subscribeWithSelector,
-  persist,
-  createJSONStorage,
-  devtools,
-} from "zustand/middleware";
+import { combine } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import type { Todo } from "@/types";
 
-const initalState: {
+const initialState: {
   todos: Todo[];
 } = {
   todos: [],
@@ -17,17 +11,17 @@ const initalState: {
 
 const useTodosStore = create(
   immer(
-    combine(initalState, (set) => ({
+    combine(initialState, (set) => ({
       actions: {
         createTodo: (content: string) => {
           set((state) => {
             state.todos.push({
-              id: new Date().getTime(),
+              id: content,
               content: content,
             });
           });
         },
-        deleteTodo: (targetId: number) => {
+        deleteTodo: (targetId: string) => {
           set((state) => {
             state.todos = state.todos.filter((todo) => todo.id !== targetId);
           });

@@ -20,7 +20,7 @@ function App() {
     <Routes>
       <Route path="/" element={<IndexPage />} />
       <Route path="/counter" element={<CounterPage />} />
-      <Route path="/todolist" element={<TodoListPage />}></Route>
+      <Route path="/todos" element={<TodoListPage />}></Route>
 
       {/* 공통 레이아웃을 적용하기 위한 코드 */}
       <Route element={<AuthLayout />}>
