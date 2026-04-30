@@ -14,16 +14,29 @@ export function useCreateTodoMutation() {
   return useMutation({
     mutationFn: createTodo,
     onSuccess: (newTodo) => {
+      queryClient.setQueryData<Todo>(
+        QUERY_KEYS.todo.detail(newTodo.id),
+        newTodo
+      );
+
+      queryClient.setQueryData<string[]>(
+        QUERY_KEYS.todo.list,
+        //prevTodoIds는 todo.list키에 현재 저장된 캐시 값이다.
+        (prevTodoIds) => {
+          if (!prevTodoIds) return [newTodo.id];
+          return [...prevTodoIds, newTodo.id];
+        }
+      );
+
       //캐시에 데이터가 초기화 되면, 페이지는 서버에 다시 요청을 보내게 된다.
       // queryClient.invalidateQueries({
       //   queryKey: QUERY_KEYS.todo.list,
       // });
-
       //단, 새로운 요청을 보내는 것 보다는 새로운 데이터를 화면에 반영하는 방향이 올바르다.
-      queryClient.setQueryData<Todo[]>(QUERY_KEYS.todo.list, (prevTodos) => {
-        if (!prevTodos) return [newTodo];
-        return [...prevTodos, newTodo];
-      });
+      // queryClient.setQueryData<Todo[]>(QUERY_KEYS.todo.list, (prevTodos) => {
+      //   if (!prevTodos) return [newTodo];
+      //   return [...prevTodos, newTodo];
+      // });
     },
     onError: (error) => {
       window.alert(error.message);
